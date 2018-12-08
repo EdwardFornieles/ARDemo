@@ -142,7 +142,7 @@ function initialize()
 	////////////////////////////////////////////////////////////
 
 	// build markerControls
-	markerNames = ["hiro", "02_HenriquesPerry", "03_Maddinson", "04_Syd"];
+	markerNames = ["01", "02", "03", "04"];
 	
 	markerArray = [];
 	objectArray = [];
@@ -257,8 +257,8 @@ function update()
 
 if(objectArray[CurObjIndex])
 {
-//	CurObj.position.set(0, 0, 0); 
-//	CurObj.rotation.set(0, 0, 0);
+	markerArray[CurObjIndex].position.set(0, 0, 0); 
+	markerArray[CurObjIndex].rotation.set(0, 0, 0);
 
 	// previousrot.push({x:0,y:0,z:0}); 
 	// previouspos.push({x:0,y:0,z:0}); 
