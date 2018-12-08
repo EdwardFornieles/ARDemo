@@ -155,6 +155,24 @@ function initialize()
 		});
 	}
 
+var previousrot=[]; 
+var previouspos=[]; 
+markerArray.forEach(function(e,i){ 
+	previousrot.push({x:0,y:0,z:0}); 
+	previouspos.push({x:0,y:0,z:0}); 
+	onRenderFcts.push(function(){ 
+		previousrot[i].z=(previousrot[i].z+markerArray[i].rotation.z)/2; 
+		previousrot[i].x=(previousrot[i].x+markerArray[i].rotation.x)/2; 
+		previousrot[i].y=(previousrot[i].y+markerArray[i].rotation.y)/2; 
+		markerArray[i].rotation.set(previousrot[i].x,previousrot[i].y,previousrot[i].z); 
+		previouspos[i].x=(previouspos[i].x+markerArray[i].position.x)/2; 
+		previouspos[i].y=(previouspos[i].y+markerArray[i].position.y)/2; 
+		previouspos[i].z=(previouspos[i].z+markerArray[i].position.z)/2; 
+		markerArray[i].position.set(previouspos[i].x,previouspos[i].y,previouspos[i].z);
+		markerArray[i].updateMatrix(); 
+	}); 
+});
+
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 	function onError(xhr) { console.log( 'An error happened' ); }
 
