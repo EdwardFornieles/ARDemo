@@ -39,10 +39,13 @@ var markerNames, markerArray, currentMarkerName;
 
 var objectArray;
 
+var previousrot=[]; 
+var previouspos=[]; 
+
 var clock = new THREE.Clock();
 
 			var mixers = [];
-var CurObj;
+var CurObjIndex;
 
 initialize();
 animate();
@@ -155,24 +158,6 @@ function initialize()
 		});
 	}
 
-var previousrot=[]; 
-var previouspos=[]; 
-markerArray.forEach(function(e,i){ 
-	previousrot.push({x:0,y:0,z:0}); 
-	previouspos.push({x:0,y:0,z:0}); 
-	onRenderFcts.push(function(){ 
-		previousrot[i].z=(previousrot[i].z+markerArray[i].rotation.z)/2; 
-		previousrot[i].x=(previousrot[i].x+markerArray[i].rotation.x)/2; 
-		previousrot[i].y=(previousrot[i].y+markerArray[i].rotation.y)/2; 
-		markerArray[i].rotation.set(previousrot[i].x,previousrot[i].y,previousrot[i].z); 
-		previouspos[i].x=(previouspos[i].x+markerArray[i].position.x)/2; 
-		previouspos[i].y=(previouspos[i].y+markerArray[i].position.y)/2; 
-		previouspos[i].z=(previouspos[i].z+markerArray[i].position.z)/2; 
-		markerArray[i].position.set(previouspos[i].x,previouspos[i].y,previouspos[i].z);
-		markerArray[i].updateMatrix(); 
-	}); 
-});
-
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 	function onError(xhr) { console.log( 'An error happened' ); }
 
@@ -194,7 +179,7 @@ markerArray.forEach(function(e,i){
 
 					objectArray[0] = object;
 
-					CurObj = objectArray[0];
+					CurObjIndex = 0;
 
 				} , onProgress, onError);
 
@@ -255,7 +240,7 @@ function update()
 				mixers = [];
 
 					objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
-		            CurObj = objectArray[i];
+		            CurObjIndex = i;
 					mixers.push( objectArray[i].mixer );
 					var action = objectArray[i].mixer.clipAction( objectArray[i].animations[ 0 ] );
 					action.play();
@@ -270,10 +255,28 @@ function update()
 	{
 	}
 
-if(CurObj)
+if(objectArray[CurObjIndex])
 {
 //	CurObj.position.set(0, 0, 0); 
 //	CurObj.rotation.set(0, 0, 0);
+
+	previousrot.push({x:0,y:0,z:0}); 
+	previouspos.push({x:0,y:0,z:0}); 
+
+			previousrot[CurObjIndex].z=(previousrot[CurObjIndex].z+markerArray[CurObjIndex].rotation.z)/2; 
+		previousrot[CurObjIndex].x=(previousrot[CurObjIndex].x+markerArray[CurObjIndex].rotation.x)/2; 
+		previousrot[CurObjIndex].y=(previousrot[CurObjIndex].y+markerArray[CurObjIndex].rotation.y)/2;
+
+		markerArray[CurObjIndex].rotation.set(previousrot[i].x,previousrot[i].y,previousrot[i].z); 
+
+		previouspos[CurObjIndex].x=(previouspos[CurObjIndex].x+markerArray[CurObjIndex].position.x)/2; 
+		previouspos[CurObjIndex].y=(previouspos[CurObjIndex].y+markerArray[CurObjIndex].position.y)/2; 
+		previouspos[CurObjIndex].z=(previouspos[CurObjIndex].z+markerArray[CurObjIndex].position.z)/2; 
+
+		markerArray[CurObjIndex].position.set(previouspos[CurObjIndex].x,previouspos[CurObjIndex].y,previouspos[CurObjIndex].z);
+
+		markerArray[CurObjIndex].updateMatrix(); 
+
 }
 
 	// update artoolkit on every frame
