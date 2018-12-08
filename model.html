@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <head>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<title>Hello, world!</title>
+	<title>SixersAR</title>
 	<!-- include three.js library -->
 	<script src='js/three.js'></script>
-	<script src='js/OBJLoader.js'></script>
-	<script src='js/MTLLoader.js'></script>
+	<script src='js/FBXLoader.js'></script>
+	<script src='js/inflate.min.js'></script>
+	<script src='js/OrbitControls.js'></script>
+	<script src='js/FBXLoader.js'></script>
+	<script src="js/stats.min.js"></script>
+		<script src="js/curves/NURBSCurve.js"></script>
+		<script src="js/curves/NURBSUtils.js"></script>
+
 	<!-- include jsartookit -->
 	<script src="jsartoolkit5/artoolkit.min.js"></script>
 	<script src="jsartoolkit5/artoolkit.api.js"></script>
@@ -25,23 +31,40 @@
 
 <script>
 
-var scene, camera, renderer, clock, deltaTime, totalTime;
+var scene, camera, renderer, light;
 
 var arToolkitSource, arToolkitContext;
 
-var markerRoot1;
+var markerNames, markerArray, currentMarkerName;
 
-var mesh1;
+var objectArray;
+
+var clock = new THREE.Clock();
+
+			var mixers = [];
 
 initialize();
 animate();
 
 function initialize()
 {
+	container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
 	scene = new THREE.Scene();
 
-	let ambientLight = new THREE.AmbientLight( 0xcccccc, 1.0 );
-	scene.add( ambientLight );
+				light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
+				light.position.set( 0, 200, 0 );
+				scene.add( light );
+
+				light = new THREE.DirectionalLight( 0xffffff );
+				light.position.set( 0, 200, 100 );
+				light.castShadow = true;
+				light.shadow.camera.top = 180;
+				light.shadow.camera.bottom = - 100;
+				light.shadow.camera.left = - 120;
+				light.shadow.camera.right = 120;
+				scene.add( light );
 				
 	camera = new THREE.Camera();
 	scene.add(camera);
@@ -51,11 +74,18 @@ function initialize()
 		alpha: true
 	});
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
-	renderer.setSize( 640, 480 );
+
+	
+	renderer.setPixelRatio( window.devicePixelRatio );
+
+	renderer.setSize( 800, 600 );
+
+				renderer.shadowMap.enabled = true;
+
 	renderer.domElement.style.position = 'absolute'
 	renderer.domElement.style.top = '0px'
 	renderer.domElement.style.left = '0px'
-	document.body.appendChild( renderer.domElement );
+	document.body.appendChild( renderer.domElement);
 
 	clock = new THREE.Clock();
 	deltaTime = 0;
@@ -108,62 +138,136 @@ function initialize()
 	////////////////////////////////////////////////////////////
 
 	// build markerControls
-	markerRoot1 = new THREE.Group();
-	scene.add(markerRoot1);
-	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-		type: 'pattern', patternUrl: "data/pattern-marker (1).patt",
-	})
-
-	let geometry1 = new THREE.PlaneBufferGeometry(1,1, 4,4);
-	let loader = new THREE.TextureLoader();
-	// let texture = loader.load( 'images/earth.jpg', render );
-	let material1 = new THREE.MeshBasicMaterial( { color: 0x0000ff, opacity: 0.5 } );
-	mesh1 = new THREE.Mesh( geometry1, material1 );
-	mesh1.rotation.x = -Math.PI/2;
-	markerRoot1.add( mesh1 );
+	markerNames = ["pattern-marker (1)", "02_HenriquesPerry", "03_Maddinson", "04_Syd"];
 	
+	markerArray = [];
+	objectArray = [];
+
+	for (let i = 0; i < markerNames.length; i++)
+	{
+		let marker = new THREE.Group();
+		scene.add(marker);
+		markerArray.push(marker);
+		
+		let markerControls = new THREEx.ArMarkerControls(arToolkitContext, marker, {
+			type: 'pattern', patternUrl: "data/" + markerNames[i] + ".patt",
+		});
+	}
+
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 	function onError(xhr) { console.log( 'An error happened' ); }
-	
-	new THREE.MTLLoader()
-		.setPath( 'models/' )
-		.load( 'fish-2.mtl', function ( materials ) {
-			materials.preload();
-			new THREE.OBJLoader()
-				.setMaterials( materials )
-				.setPath( 'models/' )
-				.load( 'fish-2.obj', function ( group ) {
-					mesh0 = group.children[0];
-					mesh0.material.side = THREE.DoubleSide;
-					mesh0.position.y = 0.25;
-					mesh0.scale.set(0.25,0.25,0.25);
-					markerRoot1.add(mesh0);
-				}, onProgress, onError );
-		});
+
+				// model
+
+								var loader1 = new THREE.FBXLoader();
+				loader1.load( 'models/Healy.fbx', function ( object ) {
+
+					object.scale.setScalar(0.01);
+		            object.position.set(0, 0, 0); 
+
+					object.mixer = new THREE.AnimationMixer( object );
+					mixers.push( object.mixer );
+
+					var action = object.mixer.clipAction( object.animations[ 0 ] );
+					action.play();
+
+					markerArray[0].add( object );
+
+					objectArray[0] = object;
+
+				} , onProgress, onError);
+
+								// model
+				var loader2 = new THREE.FBXLoader();
+				loader2.load( 'models/HP.fbx', function ( object ) {
+
+					object.scale.setScalar(0.007);
+		            object.position.set(-0.4, 0, 0.15); 
+
+					markerArray[1].add( object );
+
+					objectArray[1] = object;
+
+				} , onProgress, onError);
+
+				// model
+				var loader3 = new THREE.FBXLoader();
+				loader3.load( 'models/Maddinson.fbx', function ( object ) {
+
+					object.scale.setScalar(0.01);
+		            object.position.set(0, 0, 0); 
+
+					markerArray[2].add( object );
+
+					objectArray[2] = object;
+
+				} , onProgress, onError);
+
+				var loader4 = new THREE.FBXLoader();
+				loader4.load( 'models/Syd.fbx', function ( object ) {
+
+					object.scale.setScalar(0.005);
+		            object.position.set(0, 0, 0); 
+
+					markerArray[3].add( object );
+
+					objectArray[3] = object;
+
+				} , onProgress, onError);
+
+currentMarkerName = markerNames[0];
+
 }
 
 
 function update()
 {
+	let anyMarkerVisible = false;
+	for (let i = 0; i < markerArray.length; i++)
+	{
+		if ( markerArray[i].visible )
+		{
+			anyMarkerVisible = true;
+			if ( currentMarkerName != markerNames[i] )
+			{
+				currentMarkerName = markerNames[i];
+				mixers = [];
+
+					objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
+					mixers.push( objectArray[i].mixer );
+
+					var action = objectArray[i].mixer.clipAction( objectArray[i].animations[ 0 ] );
+					action.play();
+
+				// console.log("Switching to " + currentMarkerName);
+			}
+			break;
+		}
+	}
+
+	if ( !anyMarkerVisible )
+	{
+	}
+
 	// update artoolkit on every frame
 	if ( arToolkitSource.ready !== false )
 		arToolkitContext.update( arToolkitSource.domElement );
 }
 
 
-function render()
-{
-	renderer.render( scene, camera );
-}
-
-
 function animate()
 {
-	requestAnimationFrame(animate);
-	deltaTime = clock.getDelta();
-	totalTime += deltaTime;
-	update();
-	render();
+requestAnimationFrame( animate );
+				if ( mixers.length > 0 ) {
+					for ( var i = 0; i < mixers.length; i ++ ) {
+						mixers[ i ].update( clock.getDelta() );
+					}
+				}
+
+				update();
+
+				renderer.render( scene, camera );
+
 }
 
 </script>
