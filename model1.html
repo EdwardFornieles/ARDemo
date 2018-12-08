@@ -166,7 +166,7 @@ function initialize()
 								var loader1 = new THREE.FBXLoader();
 				loader1.load( 'models/Healy.fbx', function ( object ) {
 
-					object.scale.setScalar(0.01);
+					object.scale.setScalar(0.007);
 		            object.position.set(0, 0, 0); 
 
 					object.mixer = new THREE.AnimationMixer( object );
@@ -187,7 +187,7 @@ function initialize()
 				var loader2 = new THREE.FBXLoader();
 				loader2.load( 'models/HP.fbx', function ( object ) {
 
-					object.scale.setScalar(0.007);
+					object.scale.setScalar(0.005);
 		            object.position.set(-0.4, 0, 0.15); 
 
 					markerArray[1].add( object );
@@ -200,7 +200,7 @@ function initialize()
 				var loader3 = new THREE.FBXLoader();
 				loader3.load( 'models/Maddinson.fbx', function ( object ) {
 
-					object.scale.setScalar(0.008);
+					object.scale.setScalar(0.007);
 		            object.position.set(0, 0, 0); 
 
 					markerArray[2].add( object );
