@@ -42,6 +42,7 @@ var objectArray;
 var clock = new THREE.Clock();
 
 			var mixers = [];
+var CurObj;
 
 initialize();
 animate();
@@ -175,6 +176,8 @@ function initialize()
 
 					objectArray[0] = object;
 
+					CurObj = objectArray[0];
+
 				} , onProgress, onError);
 
 								// model
@@ -234,8 +237,8 @@ function update()
 				mixers = [];
 
 					objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
+		            CurObj = objectArray[i];
 					mixers.push( objectArray[i].mixer );
-
 					var action = objectArray[i].mixer.clipAction( objectArray[i].animations[ 0 ] );
 					action.play();
 
@@ -248,6 +251,8 @@ function update()
 	if ( !anyMarkerVisible )
 	{
 	}
+
+	CurObj.position.set(0, 0, 0); 
 
 	// update artoolkit on every frame
 	if ( arToolkitSource.ready !== false )
