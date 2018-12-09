@@ -9,8 +9,6 @@
 	<script src='js/OrbitControls.js'></script>
 	<script src='js/FBXLoader.js'></script>
 	<script src="js/stats.min.js"></script>
-		<script src="js/curves/NURBSCurve.js"></script>
-		<script src="js/curves/NURBSUtils.js"></script>
 
 	<!-- include jsartookit -->
 	<script src="jsartoolkit5/artoolkit.min.js"></script>
@@ -23,11 +21,6 @@
 </head>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-
-<!-- 
-  Example created by Lee Stemkoski: https://github.com/stemkoski
-  Based on the AR.js library and examples created by Jerome Etienne: https://github.com/jeromeetienne/AR.js/
--->
 
 <script>
 
@@ -142,7 +135,7 @@ function initialize()
 	////////////////////////////////////////////////////////////
 
 	// build markerControls
-	markerNames = ["pattern-marker (1)", "02_HenriquesPerry", "03_Maddinson", "04_Syd"];
+	markerNames = ["01", "02", "03", "04"];
 	
 	markerArray = [];
 	objectArray = [];
@@ -166,7 +159,7 @@ function initialize()
 								var loader1 = new THREE.FBXLoader();
 				loader1.load( 'models/Healy.fbx', function ( object ) {
 
-					object.scale.setScalar(0.01);
+					object.scale.setScalar(0.007);
 		            object.position.set(0, 0, 0); 
 
 					object.mixer = new THREE.AnimationMixer( object );
@@ -187,7 +180,7 @@ function initialize()
 				var loader2 = new THREE.FBXLoader();
 				loader2.load( 'models/HP.fbx', function ( object ) {
 
-					object.scale.setScalar(0.007);
+					object.scale.setScalar(0.005);
 		            object.position.set(-0.4, 0, 0.15); 
 
 					markerArray[1].add( object );
@@ -200,7 +193,7 @@ function initialize()
 				var loader3 = new THREE.FBXLoader();
 				loader3.load( 'models/Maddinson.fbx', function ( object ) {
 
-					object.scale.setScalar(0.01);
+					object.scale.setScalar(0.007);
 		            object.position.set(0, 0, 0); 
 
 					markerArray[2].add( object );
@@ -212,7 +205,7 @@ function initialize()
 				var loader4 = new THREE.FBXLoader();
 				loader4.load( 'models/Syd.fbx', function ( object ) {
 
-					object.scale.setScalar(0.005);
+					object.scale.setScalar(0.004);
 		            object.position.set(0, 0, 0); 
 
 					markerArray[3].add( object );
@@ -257,25 +250,34 @@ function update()
 
 if(objectArray[CurObjIndex])
 {
-//	CurObj.position.set(0, 0, 0); 
-//	CurObj.rotation.set(0, 0, 0);
+	var pos = markerArray[CurObjIndex].position;
+	var rot = markerArray[CurObjIndex].rotation;
 
-	previousrot.push({x:0,y:0,z:0}); 
-	previouspos.push({x:0,y:0,z:0}); 
+	if(pos != {x:0,y:0,z:0})
+	{
+		markerArray[CurObjIndex].position.set(0, 0, 0); 
+	}
+	if(rot != {x:0,y:0,z:0})
+	{
+		markerArray[CurObjIndex].rotation.set(0, 0, 0);
+	}
 
-			previousrot[CurObjIndex].z=(previousrot[CurObjIndex].z+markerArray[CurObjIndex].rotation.z)/2; 
-		previousrot[CurObjIndex].x=(previousrot[CurObjIndex].x+markerArray[CurObjIndex].rotation.x)/2; 
-		previousrot[CurObjIndex].y=(previousrot[CurObjIndex].y+markerArray[CurObjIndex].rotation.y)/2;
+	// previousrot.push({x:0,y:0,z:0}); 
+	// previouspos.push({x:0,y:0,z:0}); 
 
-		markerArray[CurObjIndex].rotation.set(previousrot[CurObjIndex].x,previousrot[CurObjIndex].y,previousrot[CurObjIndex].z); 
+	// 		previousrot[CurObjIndex].z=(previousrot[CurObjIndex].z+markerArray[CurObjIndex].rotation.z)/2; 
+	// 	previousrot[CurObjIndex].x=(previousrot[CurObjIndex].x+markerArray[CurObjIndex].rotation.x)/2; 
+	// 	previousrot[CurObjIndex].y=(previousrot[CurObjIndex].y+markerArray[CurObjIndex].rotation.y)/2;
 
-		previouspos[CurObjIndex].x=(previouspos[CurObjIndex].x+markerArray[CurObjIndex].position.x)/2; 
-		previouspos[CurObjIndex].y=(previouspos[CurObjIndex].y+markerArray[CurObjIndex].position.y)/2; 
-		previouspos[CurObjIndex].z=(previouspos[CurObjIndex].z+markerArray[CurObjIndex].position.z)/2; 
+	// 	markerArray[CurObjIndex].rotation.set(previousrot[CurObjIndex].x,previousrot[CurObjIndex].y,previousrot[CurObjIndex].z); 
 
-		markerArray[CurObjIndex].position.set(previouspos[CurObjIndex].x,previouspos[CurObjIndex].y,previouspos[CurObjIndex].z);
+	// 	previouspos[CurObjIndex].x=(previouspos[CurObjIndex].x+markerArray[CurObjIndex].position.x)/2; 
+	// 	previouspos[CurObjIndex].y=(previouspos[CurObjIndex].y+markerArray[CurObjIndex].position.y)/2; 
+	// 	previouspos[CurObjIndex].z=(previouspos[CurObjIndex].z+markerArray[CurObjIndex].position.z)/2; 
 
-		markerArray[CurObjIndex].updateMatrix(); 
+	// 	markerArray[CurObjIndex].position.set(previouspos[CurObjIndex].x,previouspos[CurObjIndex].y,previouspos[CurObjIndex].z);
+
+	// 	markerArray[CurObjIndex].updateMatrix(); 
 
 }
 
@@ -298,6 +300,26 @@ requestAnimationFrame( animate );
 
 				renderer.render( scene, camera );
 
+}
+
+// Detach the Tracks from the DOM.
+function detachTracks(tracks) {
+  let isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+  tracks.forEach(function(track) {
+    if (isSafari) {
+      // Avoid detaching the track and only remove the DOM element for Safari.
+      // This avoids the issue that happens because of https://github.com/twilio/twilio-video.js/issues/294
+      // We are still uncertain about what side effects this problem ultimately has if particants
+      // connect and reconnect multiple times.
+      track._attachments.forEach(function(element) {
+        element.remove();
+      });
+    } else {
+      track.detach().forEach(function(detachedElement) {
+        detachedElement.remove();
+      });
+    }
+  });
 }
 
 </script>
