@@ -69,7 +69,7 @@ function initialize()
 	scene.add( light );
 				
 	camera = new THREE.Camera();
-	//scene.add(camera);
+	scene.add(camera);
 
 	renderer = new THREE.WebGLRenderer({
 		antialias : true,
@@ -87,7 +87,7 @@ function initialize()
 	renderer.domElement.style.position = 'absolute'
 	renderer.domElement.style.top = '0px'
 	renderer.domElement.style.left = '0px'
-	document.body.appendChild( renderer.domElement);
+	//document.body.appendChild( renderer.domElement);
 
 	clock = new THREE.Clock();
 	deltaTime = 0;
