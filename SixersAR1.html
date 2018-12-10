@@ -55,6 +55,8 @@ var mixers = [];
 
 var CurObjIndex;
 
+var totalCount;
+
 initialize();
 animate();
 
@@ -63,10 +65,12 @@ function initialize()
 	container = document.createElement( 'div' );
 	document.body.appendChild( container );
 
-//	document.getElementById("scan").requestFullscreen();
-
 	document.getElementById("scan").style.visibility = "hidden";
 	document.getElementById("init").style.visibility = "hidden";
+
+	totalCount = 0;
+
+
 
 	scene = new THREE.Scene();
 
@@ -171,10 +175,21 @@ function initialize()
 		});
 	}
 
-	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); 
-var prog = xhr.loaded / xhr.total * 100;
+	function onProgress(xhr) { 
+		console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); 
+		var prog = xhr.loaded / xhr.total * 100;
 
-}
+		if(prog == 100)
+		{
+			totalCount = totalCount + 1;
+		}
+
+		if(totalCount == 4)
+		{
+			document.getElementById("main").style.visibility = "hidden";
+		}
+	}
+
 	function onError(xhr) { console.log( 'An error happened' ); }
 
 	// model
