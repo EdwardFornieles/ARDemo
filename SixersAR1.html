@@ -24,7 +24,7 @@
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 
-<img src="images/Loading1.png" id="load" />
+<img src="images/scan.png" id="scan" />
 <button onclick="myFunction()">Click Me</button>
 
 <script>
@@ -55,7 +55,8 @@ function initialize()
 	document.body.appendChild( container );
 
 	document.body.style.backgroundImage = "url('images/main.png')"		
-			
+	setImageVisible("scan", 'hidden');
+
 	scene = new THREE.Scene();
 
 	light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
@@ -251,6 +252,7 @@ function update()
 
 	if ( !anyMarkerVisible )
 	{
+
 	}
 
 	if(objectArray[CurObjIndex])
