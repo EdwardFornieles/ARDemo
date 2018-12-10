@@ -728,9 +728,9 @@ out$.presets = presets = {
     "type": 'fill',
     "path": 'M15 5L85 5A5 5 0 0 1 85 15L15 15A5 5 0 0 1 15 5',
     "stroke": '#f00',
-    "fill": 'data:ldbar/res,stripe(#25b,#58e,1)',
+    "fill": 'data:ldbar/res,stripe(#d8478f,#47092b,1)',
     "fill-dir": "ltr",
-    "fill-background": '#ddd',
+    "fill-background": '#47082a',
     "fill-background-extrude": 1,
     "bbox": "10 5 80 10"
   },
