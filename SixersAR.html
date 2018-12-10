@@ -250,16 +250,17 @@ function update()
 
 				if(i == 1)
 				{
-					objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
-					mixers.push( objectArray[i].mixer );
-					var action1 = objectArray[i].mixer.clipAction( objectArray[i].animations[ 0 ] );
-
 					objectArray[i + 3].mixer = new THREE.AnimationMixer( objectArray[i + 3] );
 					mixers.push( objectArray[i + 3].mixer );
 					var action2 = objectArray[i + 3].mixer.clipAction( objectArray[i + 3].animations[ 0 ] );
 
-					action1.play();
+					objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
+					mixers.push( objectArray[i].mixer );
+					var action1 = objectArray[i].mixer.clipAction( objectArray[i].animations[ 0 ] );
+
+
 					action2.play();
+					action1.play();
 				}else{
 					objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
 					mixers.push( objectArray[i].mixer );
