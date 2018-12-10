@@ -25,6 +25,8 @@
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 
 <img src="images/scan.png" id="scan" />
+<img src="images/init.png" id="init" />
+
 <button onclick="myFunction()">Click Me</button>
 
 <script>
@@ -55,7 +57,9 @@ function initialize()
 	document.body.appendChild( container );
 
 	document.body.style.backgroundImage = "url('images/main.png')"		
+
 	document.getElementById("scan").style.visibility = "hidden";
+	document.getElementById("init").style.visibility = "hidden";
 
 	scene = new THREE.Scene();
 
@@ -246,6 +250,12 @@ function update()
 				var action = objectArray[i].mixer.clipAction( objectArray[i].animations[ 0 ] );
 				action.play();
 			}
+
+			document.getElementById("scan").style.visibility = "hidden";
+
+			document.getElementById("init").style.visibility = "visible";
+			$("#init").fadeOut(1000);
+
 			break;
 		}
 	}
