@@ -198,7 +198,7 @@ function initialize()
 		object.scale.setScalar(0.005);
         object.position.set(-0.4, 0, 0.15); 
 
-		markerArray[4].add( object );
+		markerArray[1].add( object );
 
 		objectArray[4] = object;
 
@@ -236,7 +236,7 @@ function initialize()
 function update()
 {
 	let anyMarkerVisible = false;
-	for (let i = 0; i < 4; i++)
+	for (let i = 0; i < markerArray.length; i++)
 	{
 		if ( markerArray[i].visible )
 		{
