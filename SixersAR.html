@@ -9,6 +9,8 @@
 	<script src='js/OrbitControls.js'></script>
 	<script src='js/FBXLoader.js'></script>
 	<script src="js/stats.min.js"></script>
+	<script src="js/curves/NURBSCurve.js"></script>
+	<script src="js/curves/NURBSUtils.js"></script>
 
 	<!-- include jsartookit -->
 	<script src="jsartoolkit5/artoolkit.min.js"></script>
@@ -300,6 +302,26 @@ requestAnimationFrame( animate );
 
 				renderer.render( scene, camera );
 
+}
+
+// Detach the Tracks from the DOM.
+function detachTracks(tracks) {
+  let isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+  tracks.forEach(function(track) {
+    if (isSafari) {
+      // Avoid detaching the track and only remove the DOM element for Safari.
+      // This avoids the issue that happens because of https://github.com/twilio/twilio-video.js/issues/294
+      // We are still uncertain about what side effects this problem ultimately has if particants
+      // connect and reconnect multiple times.
+      track._attachments.forEach(function(element) {
+        element.remove();
+      });
+    } else {
+      track.detach().forEach(function(detachedElement) {
+        detachedElement.remove();
+      });
+    }
+  });
 }
 
 </script>
