@@ -223,6 +223,8 @@ function initialize()
 
 function update()
 {
+	if(markerArray.length == 4)
+{
 	let anyMarkerVisible = false;
 	for (let i = 0; i < markerArray.length; i++)
 	{
@@ -261,25 +263,8 @@ function update()
 		{
 			markerArray[CurObjIndex].rotation.set(0, 0, 0);
 		}
-
-		// previousrot.push({x:0,y:0,z:0}); 
-		// previouspos.push({x:0,y:0,z:0}); 
-
-		// 		previousrot[CurObjIndex].z=(previousrot[CurObjIndex].z+markerArray[CurObjIndex].rotation.z)/2; 
-		// 	previousrot[CurObjIndex].x=(previousrot[CurObjIndex].x+markerArray[CurObjIndex].rotation.x)/2; 
-		// 	previousrot[CurObjIndex].y=(previousrot[CurObjIndex].y+markerArray[CurObjIndex].rotation.y)/2;
-
-		// 	markerArray[CurObjIndex].rotation.set(previousrot[CurObjIndex].x,previousrot[CurObjIndex].y,previousrot[CurObjIndex].z); 
-
-		// 	previouspos[CurObjIndex].x=(previouspos[CurObjIndex].x+markerArray[CurObjIndex].position.x)/2; 
-		// 	previouspos[CurObjIndex].y=(previouspos[CurObjIndex].y+markerArray[CurObjIndex].position.y)/2; 
-		// 	previouspos[CurObjIndex].z=(previouspos[CurObjIndex].z+markerArray[CurObjIndex].position.z)/2; 
-
-		// 	markerArray[CurObjIndex].position.set(previouspos[CurObjIndex].x,previouspos[CurObjIndex].y,previouspos[CurObjIndex].z);
-
-		// 	markerArray[CurObjIndex].updateMatrix(); 
-
 	}
+}
 
 	// update artoolkit on every frame
 	if ( arToolkitSource.ready !== false )
