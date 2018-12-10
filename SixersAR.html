@@ -39,7 +39,8 @@ var previouspos=[];
 
 var clock = new THREE.Clock();
 
-			var mixers = [];
+var mixers = [];
+
 var CurObjIndex;
 
 initialize();
@@ -52,18 +53,18 @@ function initialize()
 
 	scene = new THREE.Scene();
 
-				light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
-				light.position.set( 0, 200, 0 );
-				scene.add( light );
+	light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
+	light.position.set( 0, 200, 0 );
+	scene.add( light );
 
-				light = new THREE.DirectionalLight( 0xffffff );
-				light.position.set( 0, 200, 100 );
-				light.castShadow = true;
-				light.shadow.camera.top = 180;
-				light.shadow.camera.bottom = - 100;
-				light.shadow.camera.left = - 120;
-				light.shadow.camera.right = 120;
-				scene.add( light );
+	light = new THREE.DirectionalLight( 0xffffff );
+	light.position.set( 0, 200, 100 );
+	light.castShadow = true;
+	light.shadow.camera.top = 180;
+	light.shadow.camera.bottom = - 100;
+	light.shadow.camera.left = - 120;
+	light.shadow.camera.right = 120;
+	scene.add( light );
 				
 	camera = new THREE.Camera();
 	scene.add(camera);
@@ -72,14 +73,14 @@ function initialize()
 		antialias : true,
 		alpha: true
 	});
+
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 
-	
 	renderer.setPixelRatio( window.devicePixelRatio );
 
 	renderer.setSize( 800, 600 );
 
-				renderer.shadowMap.enabled = true;
+	renderer.shadowMap.enabled = true;
 
 	renderer.domElement.style.position = 'absolute'
 	renderer.domElement.style.top = '0px'
@@ -156,70 +157,69 @@ function initialize()
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
 	function onError(xhr) { console.log( 'An error happened' ); }
 
-				// model
+	// model
 
-								var loader1 = new THREE.FBXLoader();
-				loader1.load( 'models/Healy.fbx', function ( object ) {
+	var loader1 = new THREE.FBXLoader();
+	loader1.load( 'models/Healy.fbx', function ( object ) {
 
-					object.scale.setScalar(0.007);
-		            object.position.set(0, 0, 0); 
+		object.scale.setScalar(0.007);
+		object.position.set(0, 0, 0); 
 
-					object.mixer = new THREE.AnimationMixer( object );
-					mixers.push( object.mixer );
+		object.mixer = new THREE.AnimationMixer( object );
+		mixers.push( object.mixer );
 
-					var action = object.mixer.clipAction( object.animations[ 0 ] );
-					action.play();
+		var action = object.mixer.clipAction( object.animations[ 0 ] );
+		action.play();
 
-					markerArray[0].add( object );
+		markerArray[0].add( object );
 
-					objectArray[0] = object;
+		objectArray[0] = object;
 
-					CurObjIndex = 0;
+		CurObjIndex = 0;
 
-				} , onProgress, onError);
+	} , onProgress, onError);
 
-								// model
-				var loader2 = new THREE.FBXLoader();
-				loader2.load( 'models/HP.fbx', function ( object ) {
+	// model
+	var loader2 = new THREE.FBXLoader();
+	loader2.load( 'models/HP.fbx', function ( object ) {
 
-					object.scale.setScalar(0.005);
-		            object.position.set(-0.4, 0, 0.15); 
+		object.scale.setScalar(0.005);
+        object.position.set(-0.4, 0, 0.15); 
 
-					markerArray[1].add( object );
+		markerArray[1].add( object );
 
-					objectArray[1] = object;
+		objectArray[1] = object;
 
-				} , onProgress, onError);
+	} , onProgress, onError);
 
-				// model
-				var loader3 = new THREE.FBXLoader();
-				loader3.load( 'models/Maddinson.fbx', function ( object ) {
+	// model
+	var loader3 = new THREE.FBXLoader();
+	loader3.load( 'models/Maddinson.fbx', function ( object ) {
 
-					object.scale.setScalar(0.007);
-		            object.position.set(0, 0, 0); 
+		object.scale.setScalar(0.007);
+        object.position.set(0, 0, 0); 
 
-					markerArray[2].add( object );
+		markerArray[2].add( object );
 
-					objectArray[2] = object;
+		objectArray[2] = object;
 
-				} , onProgress, onError);
+	} , onProgress, onError);
 
-				var loader4 = new THREE.FBXLoader();
-				loader4.load( 'models/Syd.fbx', function ( object ) {
+	// model
+	var loader4 = new THREE.FBXLoader();
+	loader4.load( 'models/Syd.fbx', function ( object ) {
 
-					object.scale.setScalar(0.004);
-		            object.position.set(0, 0, 0); 
+		object.scale.setScalar(0.004);
+        object.position.set(0, 0, 0); 
 
-					markerArray[3].add( object );
+		markerArray[3].add( object );
 
-					objectArray[3] = object;
+		objectArray[3] = object;
 
-				} , onProgress, onError);
+	} , onProgress, onError);
 
-currentMarkerName = markerNames[0];
-
+	currentMarkerName = markerNames[0];
 }
-
 
 function update()
 {
@@ -234,13 +234,11 @@ function update()
 				currentMarkerName = markerNames[i];
 				mixers = [];
 
-					objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
-		            CurObjIndex = i;
-					mixers.push( objectArray[i].mixer );
-					var action = objectArray[i].mixer.clipAction( objectArray[i].animations[ 0 ] );
-					action.play();
-
-				// console.log("Switching to " + currentMarkerName);
+				objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
+	            CurObjIndex = i;
+				mixers.push( objectArray[i].mixer );
+				var action = objectArray[i].mixer.clipAction( objectArray[i].animations[ 0 ] );
+				action.play();
 			}
 			break;
 		}
@@ -250,58 +248,56 @@ function update()
 	{
 	}
 
-if(objectArray[CurObjIndex])
-{
-	var pos = markerArray[CurObjIndex].position;
-	var rot = markerArray[CurObjIndex].rotation;
-
-	if(pos != {x:0,y:0,z:0})
+	if(objectArray[CurObjIndex])
 	{
-		markerArray[CurObjIndex].position.set(0, 0, 0); 
+		var pos = markerArray[CurObjIndex].position;
+		var rot = markerArray[CurObjIndex].rotation;
+
+		if(pos != {x:0,y:0,z:0})
+		{
+			markerArray[CurObjIndex].position.set(0, 0, 0); 
+		}
+		if(rot != {x:0,y:0,z:0})
+		{
+			markerArray[CurObjIndex].rotation.set(0, 0, 0);
+		}
+
+		// previousrot.push({x:0,y:0,z:0}); 
+		// previouspos.push({x:0,y:0,z:0}); 
+
+		// 		previousrot[CurObjIndex].z=(previousrot[CurObjIndex].z+markerArray[CurObjIndex].rotation.z)/2; 
+		// 	previousrot[CurObjIndex].x=(previousrot[CurObjIndex].x+markerArray[CurObjIndex].rotation.x)/2; 
+		// 	previousrot[CurObjIndex].y=(previousrot[CurObjIndex].y+markerArray[CurObjIndex].rotation.y)/2;
+
+		// 	markerArray[CurObjIndex].rotation.set(previousrot[CurObjIndex].x,previousrot[CurObjIndex].y,previousrot[CurObjIndex].z); 
+
+		// 	previouspos[CurObjIndex].x=(previouspos[CurObjIndex].x+markerArray[CurObjIndex].position.x)/2; 
+		// 	previouspos[CurObjIndex].y=(previouspos[CurObjIndex].y+markerArray[CurObjIndex].position.y)/2; 
+		// 	previouspos[CurObjIndex].z=(previouspos[CurObjIndex].z+markerArray[CurObjIndex].position.z)/2; 
+
+		// 	markerArray[CurObjIndex].position.set(previouspos[CurObjIndex].x,previouspos[CurObjIndex].y,previouspos[CurObjIndex].z);
+
+		// 	markerArray[CurObjIndex].updateMatrix(); 
+
 	}
-	if(rot != {x:0,y:0,z:0})
-	{
-		markerArray[CurObjIndex].rotation.set(0, 0, 0);
-	}
-
-	// previousrot.push({x:0,y:0,z:0}); 
-	// previouspos.push({x:0,y:0,z:0}); 
-
-	// 		previousrot[CurObjIndex].z=(previousrot[CurObjIndex].z+markerArray[CurObjIndex].rotation.z)/2; 
-	// 	previousrot[CurObjIndex].x=(previousrot[CurObjIndex].x+markerArray[CurObjIndex].rotation.x)/2; 
-	// 	previousrot[CurObjIndex].y=(previousrot[CurObjIndex].y+markerArray[CurObjIndex].rotation.y)/2;
-
-	// 	markerArray[CurObjIndex].rotation.set(previousrot[CurObjIndex].x,previousrot[CurObjIndex].y,previousrot[CurObjIndex].z); 
-
-	// 	previouspos[CurObjIndex].x=(previouspos[CurObjIndex].x+markerArray[CurObjIndex].position.x)/2; 
-	// 	previouspos[CurObjIndex].y=(previouspos[CurObjIndex].y+markerArray[CurObjIndex].position.y)/2; 
-	// 	previouspos[CurObjIndex].z=(previouspos[CurObjIndex].z+markerArray[CurObjIndex].position.z)/2; 
-
-	// 	markerArray[CurObjIndex].position.set(previouspos[CurObjIndex].x,previouspos[CurObjIndex].y,previouspos[CurObjIndex].z);
-
-	// 	markerArray[CurObjIndex].updateMatrix(); 
-
-}
 
 	// update artoolkit on every frame
 	if ( arToolkitSource.ready !== false )
 		arToolkitContext.update( arToolkitSource.domElement );
 }
 
-
 function animate()
 {
-requestAnimationFrame( animate );
-				if ( mixers.length > 0 ) {
-					for ( var i = 0; i < mixers.length; i ++ ) {
-						mixers[ i ].update( clock.getDelta() );
-					}
-				}
+	requestAnimationFrame( animate );
+	if ( mixers.length > 0 ) {
+		for ( var i = 0; i < mixers.length; i ++ ) {
+			mixers[ i ].update( clock.getDelta() );
+		}
+	}
 
-				update();
+	update();
 
-				renderer.render( scene, camera );
-
+	renderer.render( scene, camera );
 }
 
 // Detach the Tracks from the DOM.
@@ -309,10 +305,6 @@ function detachTracks(tracks) {
   let isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
   tracks.forEach(function(track) {
     if (isSafari) {
-      // Avoid detaching the track and only remove the DOM element for Safari.
-      // This avoids the issue that happens because of https://github.com/twilio/twilio-video.js/issues/294
-      // We are still uncertain about what side effects this problem ultimately has if particants
-      // connect and reconnect multiple times.
       track._attachments.forEach(function(element) {
         element.remove();
       });
@@ -325,6 +317,5 @@ function detachTracks(tracks) {
 }
 
 </script>
-
 </body>
 </html>
