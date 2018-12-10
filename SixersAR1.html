@@ -24,7 +24,10 @@
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 
-<img src="images/main.png" id="main" />
+<img src="images/main.png" id="main" 
+		width: auto !important;
+      height: auto !important;
+      margin:auto !important;/>
 <img src="images/scan.png" id="scan" />
 <img src="images/init.png" id="init" />
 
@@ -57,8 +60,8 @@ function initialize()
 	container = document.createElement( 'div' );
 	document.body.appendChild( container );
 
-	document.getElementById("scan").requestFullscreen();
-	
+//	document.getElementById("scan").requestFullscreen();
+
 	document.getElementById("scan").style.visibility = "hidden";
 	document.getElementById("init").style.visibility = "hidden";
 
