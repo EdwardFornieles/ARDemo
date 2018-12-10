@@ -49,9 +49,10 @@ animate();
 function initialize()
 {
 	container = document.createElement( 'div' );
-				document.body.appendChild( container );
+	document.body.appendChild( container );
 
-	document.body.style.backgroundImage = "url('images/main.png')"				
+	document.body.style.backgroundImage = "url('images/main.png')"		
+			
 	scene = new THREE.Scene();
 
 	light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
@@ -68,7 +69,7 @@ function initialize()
 	scene.add( light );
 				
 	camera = new THREE.Camera();
-	scene.add(camera);
+	//scene.add(camera);
 
 	renderer = new THREE.WebGLRenderer({
 		antialias : true,
