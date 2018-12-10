@@ -25,6 +25,7 @@
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 
 <img src="images/Loading1.png" id="load" />
+<button onclick="myFunction()">Click Me</button>
 
 <script>
 
@@ -318,6 +319,11 @@ function detachTracks(tracks) {
       });
     }
   });
+}
+
+function setImageVisible(id, visible) {
+    var img = document.getElementById(id);
+    img.style.visibility = (visible ? 'visible' : 'hidden');
 }
 
 </script>
