@@ -187,6 +187,7 @@ function initialize()
 		if(totalCount == 4)
 		{
 			document.getElementById("main").style.visibility = "hidden";
+			document.getElementById("scan").style.visibility = "visible";
 		}
 	}
 
@@ -258,7 +259,7 @@ function initialize()
 
 function update()
 {
-	if(markerArray.length == 4)
+	if(totalCount == 4)
 	{
 		let anyMarkerVisible = false;
 		for (let i = 0; i < markerArray.length; i++)
