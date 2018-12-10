@@ -55,6 +55,7 @@ function initialize()
 	document.body.appendChild( container );
 
 	document.body.style.backgroundImage = "url('images/main.png')"		
+	document.getElementById("scan").style.visibility = "hidden";
 
 	scene = new THREE.Scene();
 
@@ -251,7 +252,7 @@ function update()
 
 	if (objectArray[0] && !anyMarkerVisible )
 	{
-		document.getElementById("scan").style.visibility = "hidden";
+		document.getElementById("scan").style.visibility = "show";
 	}
 
 	if(objectArray[CurObjIndex])
