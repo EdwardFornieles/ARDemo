@@ -250,19 +250,34 @@ function update()
 
 				if(i == 1)
 				{
-					objectArray[i + 3].mixer = new THREE.AnimationMixer( objectArray[i + 3] );
-					mixers.push( objectArray[i + 3].mixer );
-					var action2 = objectArray[i + 3].mixer.clipAction( objectArray[i + 3].animations[ 0 ] );
+					var animationGroup = new THREE.AnimationObjectGroup();
+					animationGroup.add(objectArray[i]);
+					animationGroup.add(objectArray[i + 3]);
+					
+					var mixer = new THREE.AnimationMixer( animationGroup );
+					mixers.push(mixer);
 
-					action2.play();
-
-					objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
-					mixers.push( objectArray[i].mixer );
-					var action1 = objectArray[i].mixer.clipAction( objectArray[i].animations[ 0 ] );
-
+					var action1 = mixer.clipAction( objectArray[i].animations[ 0 ] );
 
 					action1.play();
 
+					var action2 = mixer.clipAction( objectArray[i + 3].animations[ 0 ] );
+
+					action2.play();
+
+
+					// objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
+					// mixers.push( objectArray[i].mixer );
+					// var action1 = objectArray[i].mixer.clipAction( objectArray[i].animations[ 0 ] );
+
+					// action1.play();
+
+
+					// objectArray[i + 3].mixer = new THREE.AnimationMixer( objectArray[i + 3] );
+					// mixers.push( objectArray[i + 3].mixer );
+					// var action2 = objectArray[i + 3].mixer.clipAction( objectArray[i + 3].animations[ 0 ] );
+
+					// action2.play();
 				}else{
 					objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
 					mixers.push( objectArray[i].mixer );
