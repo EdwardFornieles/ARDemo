@@ -48,12 +48,12 @@ wrap = function(content){
       ret = ret.concat([
         "<rect fill=\"" + c2 + "\" width=\"100\" height=\"100\"/>", "<g><g>", (function(){
           var i$, results$ = [];
-          for (i$ = 0; i$ < 13; ++i$) {
+          for (i$ = 0; i$ < 40; ++i$) {
             i = i$;
-            results$.push(("<polygon fill=\"" + c1 + "\" ") + ("points=\"" + (-90 + i * 20) + ",100 " + (-100 + i * 20) + ",") + ("100 " + (-60 + i * 20) + ",0 " + (-50 + i * 20) + ",0 \"/>"));
+            results$.push(("<polygon fill=\"" + c1 + "\" ") + ("points=\"" + (-9 + i * 2) + ",10 " + (-10 + i * 2) + ",") + ("10 " + (-6 + i * 2) + ",0 " + (-5 + i * 2) + ",0 \"/>"));
           }
           return results$;
-        }()).join(""), "</g><animateTransform attributeName=\"transform\" type=\"translate\" ", "from=\"0,0\" to=\"20,0\" dur=\"" + dur + "s\" repeatCount=\"indefinite\"/></g></svg>"
+        }()).join(""), "</g><animateTransform attributeName=\"transform\" type=\"translate\" ", "from=\"0,0\" to=\"15,0\" dur=\"" + dur + "s\" repeatCount=\"indefinite\"/></g></svg>"
       ].join(""));
       return wrap(ret);
     },
@@ -727,8 +727,8 @@ out$.presets = presets = {
   stripe: {
     "type": 'fill',
     "path": 'M15 5L85 5A5 5 0 0 1 85 15L15 15A5 5 0 0 1 15 5',
-    "stroke": '#f00',
-    "fill": 'data:ldbar/res,stripe(#d8478f,#47092b,1)',
+    "stroke": '#00000000',
+    "fill": 'data:ldbar/res,stripe(#d8478f,#47092b00, 3)',
     "fill-dir": "ltr",
     "fill-background": '#47082a',
     "fill-background-extrude": 1,
