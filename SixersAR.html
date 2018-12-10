@@ -181,7 +181,7 @@ function initialize()
 
 	// model
 	var loader2 = new THREE.FBXLoader();
-	loader2.load( 'models/HP1.fbx', function ( object ) {
+	loader2.load( 'models/newcricket.fbx', function ( object ) {
 
 		object.scale.setScalar(0.005);
         object.position.set(-0.4, 0, 0.15); 
@@ -189,18 +189,6 @@ function initialize()
 		markerArray[1].add( object );
 
 		objectArray[1] = object;
-
-	} , onProgress, onError);
-
-	var loader5 = new THREE.FBXLoader();
-	loader5.load( 'models/HP2.fbx', function ( object ) {
-
-		object.scale.setScalar(0.005);
-        object.position.set(-0.4, 0, 0.15); 
-
-		markerArray[1].add( object );
-
-		objectArray[4] = object;
 
 	} , onProgress, onError);
 
@@ -246,44 +234,11 @@ function update()
 				currentMarkerName = markerNames[i];
 				mixers = [];
 
+				objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
 	            CurObjIndex = i;
-
-				if(i == 1)
-				{
-					var animationGroup = new THREE.AnimationObjectGroup();
-					animationGroup.add(objectArray[i]);
-					animationGroup.add(objectArray[i + 3]);
-					
-					var mixer = new THREE.AnimationMixer( animationGroup );
-					mixers.push(mixer);
-
-					var action1 = mixer.clipAction( objectArray[i].animations[ 0 ] );
-
-					action1.play();
-
-					var action2 = mixer.clipAction( objectArray[i + 3].animations[ 0 ] );
-
-					action2.play();
-
-
-					// objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
-					// mixers.push( objectArray[i].mixer );
-					// var action1 = objectArray[i].mixer.clipAction( objectArray[i].animations[ 0 ] );
-
-					// action1.play();
-
-
-					// objectArray[i + 3].mixer = new THREE.AnimationMixer( objectArray[i + 3] );
-					// mixers.push( objectArray[i + 3].mixer );
-					// var action2 = objectArray[i + 3].mixer.clipAction( objectArray[i + 3].animations[ 0 ] );
-
-					// action2.play();
-				}else{
-					objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
-					mixers.push( objectArray[i].mixer );
-					var action = objectArray[i].mixer.clipAction( objectArray[i].animations[ 0 ] );
-					action.play();
-				}
+				mixers.push( objectArray[i].mixer );
+				var action = objectArray[i].mixer.clipAction( objectArray[i].animations[ 0 ] );
+				action.play();
 			}
 			break;
 		}
