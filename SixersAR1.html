@@ -28,7 +28,7 @@
 
 <img src="images/main.png" id="main" style="width: 100%; height: 100%" />
 <img src="images/Loading01.png" id="loading" style="width: 10%; height: 10%; left: 0px; top: 0px" 
-		data-value="0" data-type="fill" data-fill-dir="ltr" data-img="images/Loading02.png"/>
+		data-pattern-size="0" data-type="fill" data-fill-dir="ltr" data-img="images/Loading02.png"/>
 
 <img src="images/scan.png" id="scan" style="width: 10%; height: 10%; left: 0px; top: 0px" />
 <img src="images/init.png" id="init" style="width: 10%; height: 10%; left: 0px; top: 0px" />
@@ -191,7 +191,7 @@ function initialize()
 
 	function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); 
 var prog = xhr.loaded / xhr.total * 100;
-document.getElementById("scan").data-value = prog;
+document.getElementById("scan").data-pattern-size = prog;
 }
 	function onError(xhr) { console.log( 'An error happened' ); }
 
