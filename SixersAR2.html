@@ -37,7 +37,7 @@
 <img src="images/scan.png" id="scan" style="position: absolute; width: 25%; height: 18.44%; left: 68.61%; bottom: 77.06%" />
 <img src="images/init.png" id="init" style="position: absolute; width: 25%; height: 18.44%; left: 68.61%; bottom: 77.06%" />
 
-<div id="loadingbar" data-preset="stripe" class="ldBar label-center" data-value="30" style=""></div>
+<div id="loadingbar" data-preset="stripe" class="ldBar label-center" data-value="0" style=""></div>
 
 <script type="text/javascript">
 
@@ -72,7 +72,7 @@ function myFunction(){
 	document.getElementById("load02").style.visibility = "hidden";
 	document.getElementById("start").style.visibility = "hidden";
 	document.getElementById("scan").style.visibility = "visible";
-	document.getElementById("loadingbar").style.visibility = "hidden";
+//	document.getElementById("loadingbar").style.visibility = "hidden";
 	setAspectRatio(document.getElementById("scan"), document.getElementById("scan").style.height);
 
 	startValue = 1;
