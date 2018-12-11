@@ -11,6 +11,8 @@
 	<script src="js/stats.min.js"></script>
 	<script src="js/curves/NURBSCurve.js"></script>
 	<script src="js/curves/NURBSUtils.js"></script>
+	<script src="js/image-aspect-ratio.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="css/loading-bar.css"/>
 	<script type="text/javascript" src="js/loading-bar.js"></script>
 
@@ -85,6 +87,8 @@ function initialize()
 	document.getElementById("scan").style.visibility = "hidden";
 	document.getElementById("init").style.visibility = "hidden";
 	document.getElementById("loadingbar").setAttribute("data-value","0");
+
+	setAspectRatio(document.getElementById("scan"), document.getElementById("scan").style.width);
 
 // document.querySelector("start").addEventListener("click", (e)=> {
 //   myFunction();
