@@ -193,7 +193,7 @@ function initialize()
 
 	function onProgress(xhr) { 
 
-		console.log(totalCount);
+		console.log(xhr.type);
 
 		var prog = xhr.loaded / xhr.total * 100;
 
