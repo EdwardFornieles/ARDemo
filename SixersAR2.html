@@ -424,7 +424,9 @@ function getSize() {
   console.log("width : " + myWidth);
   console.log("height : " + myHeight);
 
-  document.getElementById("loadingbar").setAttribute("style","position: absolute; width: 25.97%; left: 68.42%; bottom: 87.73%");
+  var a = myWidth * 25.97 / 100;
+
+  document.getElementById("loadingbar").setAttribute("style","position: absolute; width: " + a + "px; left: 68.42%; bottom: 87.73%");
 }
 
 </script>
