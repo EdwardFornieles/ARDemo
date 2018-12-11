@@ -88,13 +88,8 @@ function initialize()
 	document.getElementById("scan").style.visibility = "hidden";
 	document.getElementById("init").style.visibility = "hidden";
 
-// document.querySelector("start").addEventListener("click", (e)=> {
-//   myFunction();
-// })
-
 	totalCount = 0;
 	startValue = 0;
-
 
 	scene = new THREE.Scene();
 
@@ -200,14 +195,11 @@ function initialize()
 	}
 
 	function onProgress(xhr) { 
-		//console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); 
 		var prog = xhr.loaded / xhr.total * 100;
 
 		var a = Math.round(totalCount * 25 + prog / 4);
 		var _percent = a / 100 * 25.97;
-		//document.getElementById("loadingbar").setAttribute("aria-valuenow", a);
 		$('#loadingbar').css('width', _percent+'%').attr('aria-valuenow', a);  
-		// document.getElementById("loadingbar").setAttribute("aria-valuenow",);
 
 		if(prog == 100)
 		{
@@ -217,7 +209,6 @@ function initialize()
 		if(totalCount == 4)
 		{
 			document.getElementById("start").style.visibility = "visible";
-			//myFunction();
 		}
 	}
 
@@ -335,20 +326,6 @@ function update()
 				markerArray[CurObjIndex].rotation.set(0, 0, 0);
 			}
 		}
-	}else{
-
-		// if(totalCount == 1)
-		// {
-		// 	document.getElementById("loadingbar").setAttribute("aria-valuenow", 25);
-		// }else if(totalCount == 2)
-		// {
-		// 	document.getElementById("loadingbar").setAttribute("aria-valuenow", 50);
-		// }else if(totalCount == 3)
-		// {
-		// 	document.getElementById("loadingbar").setAttribute("aria-valuenow", 75);
-		// }else if(totalCount == 4){
-		// 	document.getElementById("loadingbar").setAttribute("aria-valuenow", 100);
-		// }
 	}
 
 	// update artoolkit on every frame
@@ -418,11 +395,13 @@ function getSize() {
     myHeight = document.body.clientHeight;
   }
 }
+
 $(document).ready(function(){
     $("#start").click(function(){
     	myFunction();
    });
 });
+
 </script>
 </body>
 </html>
