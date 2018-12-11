@@ -201,7 +201,7 @@ function initialize()
 		console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); 
 		var prog = xhr.loaded / xhr.total * 100;
 
-		var a = totalCount * 25 + prog / 4;
+		var a = Math.round(totalCount * 25 + prog / 4);
 
 		document.getElementById("loadingbar").setAttribute("data-value",a);
 
