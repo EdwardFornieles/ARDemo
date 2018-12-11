@@ -37,7 +37,7 @@
 <img src="images/scan.png" id="scan" style="position: absolute; width: 25%; height: 18.44%; left: 68.61%; bottom: 77.06%" />
 <img src="images/init.png" id="init" style="position: absolute; width: 25%; height: 18.44%; left: 68.61%; bottom: 77.06%" />
 
-<div id="loadingbar" data-preset="stripe" class="ldBar label-center" data-value="0" style=""></div>
+<div id="loadingbar1" data-preset="stripe" class="ldBar label-center" data-value="0" style=""></div>
 
 <script type="text/javascript">
 
@@ -72,7 +72,7 @@ function myFunction(){
 	document.getElementById("load02").style.visibility = "hidden";
 	document.getElementById("start").style.visibility = "hidden";
 	document.getElementById("scan").style.visibility = "visible";
-//	document.getElementById("loadingbar").style.visibility = "hidden";
+//	document.getElementById("loadingbar1").style.visibility = "hidden";
 	setAspectRatio(document.getElementById("scan"), document.getElementById("scan").style.height);
 
 	startValue = 1;
@@ -87,7 +87,7 @@ function initialize()
 	document.getElementById("start").style.visibility = "hidden";
 	document.getElementById("scan").style.visibility = "hidden";
 	document.getElementById("init").style.visibility = "hidden";
-	document.getElementById("loadingbar").setAttribute("data-value","0");
+	document.getElementById("loadingbar1").setAttribute("data-value","0");
 
 // document.querySelector("start").addEventListener("click", (e)=> {
 //   myFunction();
@@ -207,8 +207,8 @@ function initialize()
 		var a = Math.round(totalCount * 25 + prog / 4);
 		console.log(a + "loaded");
 
-		//document.getElementById("loadingbar").setAttribute("data-value", a);
-		document.getElementById("loadingbar").setAttribute("data-value","60");
+		//document.getElementById("loadingbar1").setAttribute("data-value", a);
+		document.getElementById("loadingbar1").setAttribute("data-value","60");
 
 		if(prog == 100)
 		{
@@ -218,7 +218,7 @@ function initialize()
 		if(totalCount == 4)
 		{
 			document.getElementById("start").style.visibility = "visible";
-			document.getElementById("loadingbar").setAttribute("data-value", 100);
+			document.getElementById("loadingbar1").setAttribute("data-value", 100);
 
 			myFunction();
 		}
@@ -246,7 +246,7 @@ function initialize()
 
 		CurObjIndex = 0;
 
-		document.getElementById("loadingbar").setAttribute("data-value", 25);
+		document.getElementById("loadingbar1").setAttribute("data-value", 25);
 	} , onProgress, onError);
 
 	// model
@@ -260,7 +260,7 @@ function initialize()
 
 		objectArray[1] = object;
 
-		document.getElementById("loadingbar").setAttribute("data-value", 50);
+		document.getElementById("loadingbar1").setAttribute("data-value", 50);
 	} , onProgress, onError);
 
 	// model
@@ -274,7 +274,7 @@ function initialize()
 
 		objectArray[2] = object;
 
-		document.getElementById("loadingbar").setAttribute("data-value", 75);
+		document.getElementById("loadingbar1").setAttribute("data-value", 75);
 
 	} , onProgress, onError);
 
@@ -347,15 +347,15 @@ function update()
 
 		// if(totalCount == 1)
 		// {
-		// 	document.getElementById("loadingbar").setAttribute("data-value", 25);
+		// 	document.getElementById("loadingbar1").setAttribute("data-value", 25);
 		// }else if(totalCount == 2)
 		// {
-		// 	document.getElementById("loadingbar").setAttribute("data-value", 50);
+		// 	document.getElementById("loadingbar1").setAttribute("data-value", 50);
 		// }else if(totalCount == 3)
 		// {
-		// 	document.getElementById("loadingbar").setAttribute("data-value", 75);
+		// 	document.getElementById("loadingbar1").setAttribute("data-value", 75);
 		// }else if(totalCount == 4){
-		// 	document.getElementById("loadingbar").setAttribute("data-value", 100);
+		// 	document.getElementById("loadingbar1").setAttribute("data-value", 100);
 		// }
 	}
 
@@ -430,7 +430,7 @@ function getSize() {
 
   var a = myWidth * 25.97 / 100;
 
-  document.getElementById("loadingbar").setAttribute("style","position: absolute; width: " + a + "px; left: 68.42%; bottom: 87.73%");
+  document.getElementById("loadingbar1").setAttribute("style","position: absolute; width: " + a + "px; left: 68.42%; bottom: 87.73%");
 }
 
 </script>
