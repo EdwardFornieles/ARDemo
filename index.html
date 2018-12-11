@@ -197,7 +197,8 @@ function initialize()
 
 		var prog = xhr.loaded / totalSizeAry[0] * 100;
 		var a = Math.round(totalCount * 25 + prog / 4);
-
+		$('#loadingbar').css('width', _percent+'%').attr('aria-valuenow', a);
+		
 		if(xhr.loaded == totalSizeAry[0]) {
 			totalCount = totalCount + 1;	
 		}
@@ -214,6 +215,7 @@ function initialize()
 
 		var prog = xhr.loaded / totalSizeAry[1] * 100;
 		var a = Math.round(totalCount * 25 + prog / 4);
+		$('#loadingbar').css('width', _percent+'%').attr('aria-valuenow', a);
 
 		if(xhr.loaded == totalSizeAry[1]) {
 			totalCount = totalCount + 1;	
@@ -231,6 +233,7 @@ function initialize()
 
 		var prog = xhr.loaded / totalSizeAry[2] * 100;
 		var a = Math.round(totalCount * 25 + prog / 4);
+		$('#loadingbar').css('width', _percent+'%').attr('aria-valuenow', a);
 
 		if(xhr.loaded == totalSizeAry[2]) {
 			totalCount = totalCount + 1;	
@@ -248,6 +251,7 @@ function initialize()
 
 		var prog = xhr.loaded / totalSizeAry[3] * 100;
 		var a = Math.round(totalCount * 25 + prog / 4);
+		$('#loadingbar').css('width', _percent+'%').attr('aria-valuenow', a);
 
 		if(xhr.loaded == totalSizeAry[3]) {
 			totalCount = totalCount + 1;	
