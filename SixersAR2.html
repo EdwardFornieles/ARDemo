@@ -30,7 +30,7 @@
 
 <img src="images/main.png" id="main" style="width: 100%; height: 100%; left: 0px, right: 0px" />
 <img src="images/Loading1.png" id="load01" style="position: absolute; width: 25%; height: 17.34%; left: 68.61%; bottom: 77.9%" />
-<img onclick="myFunction()" src="images/StartBtn.png" id="start" style="position: absolute; width: 40.56%; height: 6.7%; left: 29.74%; bottom: 13.77%" />
+<img src="images/StartBtn.png" id="start" style="position: absolute; width: 40.56%; height: 6.7%; left: 29.74%; bottom: 13.77%" />
 
 <img src="images/scan.png" id="scan" style="position: absolute; width: 25%; height: 18.44%; left: 68.61%; bottom: 77.06%" />
 <img src="images/init.png" id="init" style="position: absolute; width: 25%; height: 18.44%; left: 68.61%; bottom: 77.06%" />
@@ -417,7 +417,11 @@ function getSize() {
     myHeight = document.body.clientHeight;
   }
 }
-
+$(document).ready(function(){
+    $("#start").click(function(){
+    	myFunction();
+   });
+});
 </script>
 </body>
 </html>
