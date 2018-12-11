@@ -294,6 +294,10 @@ function update()
 
 					objectArray[i].mixer = new THREE.AnimationMixer( objectArray[i] );
 		            CurObjIndex = i;
+
+		            markerArray[CurObjIndex].position.set(0, 0, 0);
+		            markerArray[CurObjIndex].rotation.set(0, 0, 0);
+		             
 					mixers.push( objectArray[i].mixer );
 					var action = objectArray[i].mixer.clipAction( objectArray[i].animations[ 0 ] );
 					action.play();
@@ -317,13 +321,13 @@ function update()
 			var pos = markerArray[CurObjIndex].position;
 			var rot = markerArray[CurObjIndex].rotation;
 
-			if(pos != {x:0,y:0,z:0})
+			//if(pos != {x:0,y:0,z:0})
 			{
-				markerArray[CurObjIndex].position.set(0, 0, 0); 
+				//markerArray[CurObjIndex].position.set(0, 0, 0); 
 			}
-			if(rot != {x:0,y:0,z:0})
+			//if(rot != {x:0,y:0,z:0})
 			{
-				markerArray[CurObjIndex].rotation.set(0, 0, 0);
+				//markerArray[CurObjIndex].rotation.set(0, 0, 0);
 			}
 		}
 	}
