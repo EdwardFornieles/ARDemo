@@ -206,11 +206,9 @@ function initialize()
 		var prog = xhr.loaded / xhr.total * 100;
 
 		var a = Math.round(totalCount * 25 + prog / 4);
-		console.log(a + "loaded");
 
 		//document.getElementById("loadingbar1").setAttribute("aria-valuenow", a);
-		document.getElementById("loadingbar1").setAttribute("aria-valuenow","60");
-		document.getElementById("testbar").setAttribute("value",a);
+		document.getElementById("loadingbar1").setAttribute("aria-valuenow",a);
 
 		if(prog == 100)
 		{
@@ -220,8 +218,6 @@ function initialize()
 		if(totalCount == 4)
 		{
 			document.getElementById("start").style.visibility = "visible";
-			document.getElementById("loadingbar1").setAttribute("aria-valuenow", 100);
-
 			myFunction();
 		}
 	}
@@ -247,8 +243,6 @@ function initialize()
 		objectArray[0] = object;
 
 		CurObjIndex = 0;
-
-		document.getElementById("loadingbar1").setAttribute("aria-valuenow", 25);
 	} , onProgress, onError);
 
 	// model
@@ -262,7 +256,6 @@ function initialize()
 
 		objectArray[1] = object;
 
-		document.getElementById("loadingbar1").setAttribute("aria-valuenow", 50);
 	} , onProgress, onError);
 
 	// model
@@ -275,8 +268,6 @@ function initialize()
 		markerArray[2].add( object );
 
 		objectArray[2] = object;
-
-		document.getElementById("loadingbar1").setAttribute("aria-valuenow", 75);
 
 	} , onProgress, onError);
 
@@ -432,7 +423,7 @@ function getSize() {
 
   var a = myWidth * 25.97 / 100;
 
-  document.getElementById("loadingbar1").setAttribute("style","position: absolute; width: " + a + "px; left: 68.42%; bottom: 87.73%");
+  //document.getElementById("loadingbar1").setAttribute("style","position: absolute; width: " + a + "px; left: 68.42%; bottom: 87.73%");
 }
 
 </script>
