@@ -220,36 +220,15 @@ function initialize()
 	function onError(xhr) { console.log( 'An error happened' ); }
 
 	// model
+	var loader4 = new THREE.FBXLoader();
+	loader4.load( 'models/Syd.fbx', function ( object ) {
 
-	var loader1 = new THREE.FBXLoader();
-	loader1.load( 'models/Healy.fbx', function ( object ) {
+		object.scale.setScalar(0.004);
+        object.position.set(0, 0, 0); 
 
-		object.scale.setScalar(0.007);
-		object.position.set(0, 0, 0); 
+		markerArray[3].add( object );
 
-		object.mixer = new THREE.AnimationMixer( object );
-		mixers.push( object.mixer );
-
-		var action = object.mixer.clipAction( object.animations[ 0 ] );
-		action.play();
-
-		markerArray[0].add( object );
-
-		objectArray[0] = object;
-
-		CurObjIndex = 0;
-	} , onProgress, onError);
-
-	// model
-	var loader2 = new THREE.FBXLoader();
-	loader2.load( 'models/HP.fbx', function ( object ) {
-
-		object.scale.setScalar(0.005);
-        object.position.set(-0.4, 0, 0.15); 
-
-		markerArray[1].add( object );
-
-		objectArray[1] = object;
+		objectArray[3] = object;
 
 	} , onProgress, onError);
 
@@ -267,15 +246,36 @@ function initialize()
 	} , onProgress, onError);
 
 	// model
-	var loader4 = new THREE.FBXLoader();
-	loader4.load( 'models/Syd.fbx', function ( object ) {
+	var loader1 = new THREE.FBXLoader();
+	loader1.load( 'models/Healy.fbx', function ( object ) {
 
-		object.scale.setScalar(0.004);
-        object.position.set(0, 0, 0); 
+		object.scale.setScalar(0.007);
+		object.position.set(0, 0, 0); 
 
-		markerArray[3].add( object );
+		object.mixer = new THREE.AnimationMixer( object );
+		mixers.push( object.mixer );
 
-		objectArray[3] = object;
+		var action = object.mixer.clipAction( object.animations[ 0 ] );
+		action.play();
+
+		markerArray[0].add( object );
+
+		objectArray[0] = object;
+
+		CurObjIndex = 0;
+
+	} , onProgress, onError);
+
+	// model
+	var loader2 = new THREE.FBXLoader();
+	loader2.load( 'models/HP.fbx', function ( object ) {
+
+		object.scale.setScalar(0.005);
+        object.position.set(-0.4, 0, 0.15); 
+
+		markerArray[1].add( object );
+
+		objectArray[1] = object;
 
 	} , onProgress, onError);
 
