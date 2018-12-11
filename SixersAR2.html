@@ -20,9 +20,9 @@
 	<script src="threex/threex-artoolkitcontext.js"></script>
 	<script src="threex/threex-arbasecontrols.js"></script>
 	<script src="threex/threex-armarkercontrols.js"></script>
-	
-	<link rel="stylesheet" type="text/css" href="css/loading-bar.css"/>
-	<script type="text/javascript" src="js/loading-bar.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body style='margin: 0px; overflow: hidden; font-family: Monospace;'>
@@ -36,7 +36,8 @@
 <img src="images/scan.png" id="scan" style="position: absolute; width: 25%; height: 18.44%; left: 68.61%; bottom: 77.06%" />
 <img src="images/init.png" id="init" style="position: absolute; width: 25%; height: 18.44%; left: 68.61%; bottom: 77.06%" />
 
-<div id="loadingbar1" data-preset="stripe" class="ldBar label-center" data-value="0" style=""></div>
+<!-- <div id="loadingbar1" data-preset="stripe" class="ldBar label-center" aria-valuenow="0" style=""></div> -->
+<div class="progress-bar" id="loadingbar1" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%"> </div>
 <progress id ="testbar" value="0" max="100" style="position: absolute; left: 0px, right:0px; top: 0px;"></progress>
 
 <script type="text/javascript">
@@ -87,7 +88,7 @@ function initialize()
 	document.getElementById("start").style.visibility = "hidden";
 	document.getElementById("scan").style.visibility = "hidden";
 	document.getElementById("init").style.visibility = "hidden";
-	document.getElementById("loadingbar1").setAttribute("data-value","0");
+	document.getElementById("loadingbar1").setAttribute("aria-valuenow","0");
 
 // document.querySelector("start").addEventListener("click", (e)=> {
 //   myFunction();
@@ -207,8 +208,8 @@ function initialize()
 		var a = Math.round(totalCount * 25 + prog / 4);
 		console.log(a + "loaded");
 
-		//document.getElementById("loadingbar1").setAttribute("data-value", a);
-		document.getElementById("loadingbar1").setAttribute("data-value","60");
+		//document.getElementById("loadingbar1").setAttribute("aria-valuenow", a);
+		document.getElementById("loadingbar1").setAttribute("aria-valuenow","60");
 		document.getElementById("testbar").setAttribute("value",a);
 
 		if(prog == 100)
@@ -219,7 +220,7 @@ function initialize()
 		if(totalCount == 4)
 		{
 			document.getElementById("start").style.visibility = "visible";
-			document.getElementById("loadingbar1").setAttribute("data-value", 100);
+			document.getElementById("loadingbar1").setAttribute("aria-valuenow", 100);
 
 			myFunction();
 		}
@@ -247,7 +248,7 @@ function initialize()
 
 		CurObjIndex = 0;
 
-		document.getElementById("loadingbar1").setAttribute("data-value", 25);
+		document.getElementById("loadingbar1").setAttribute("aria-valuenow", 25);
 	} , onProgress, onError);
 
 	// model
@@ -261,7 +262,7 @@ function initialize()
 
 		objectArray[1] = object;
 
-		document.getElementById("loadingbar1").setAttribute("data-value", 50);
+		document.getElementById("loadingbar1").setAttribute("aria-valuenow", 50);
 	} , onProgress, onError);
 
 	// model
@@ -275,7 +276,7 @@ function initialize()
 
 		objectArray[2] = object;
 
-		document.getElementById("loadingbar1").setAttribute("data-value", 75);
+		document.getElementById("loadingbar1").setAttribute("aria-valuenow", 75);
 
 	} , onProgress, onError);
 
@@ -348,15 +349,15 @@ function update()
 
 		// if(totalCount == 1)
 		// {
-		// 	document.getElementById("loadingbar1").setAttribute("data-value", 25);
+		// 	document.getElementById("loadingbar1").setAttribute("aria-valuenow", 25);
 		// }else if(totalCount == 2)
 		// {
-		// 	document.getElementById("loadingbar1").setAttribute("data-value", 50);
+		// 	document.getElementById("loadingbar1").setAttribute("aria-valuenow", 50);
 		// }else if(totalCount == 3)
 		// {
-		// 	document.getElementById("loadingbar1").setAttribute("data-value", 75);
+		// 	document.getElementById("loadingbar1").setAttribute("aria-valuenow", 75);
 		// }else if(totalCount == 4){
-		// 	document.getElementById("loadingbar1").setAttribute("data-value", 100);
+		// 	document.getElementById("loadingbar1").setAttribute("aria-valuenow", 100);
 		// }
 	}
 
