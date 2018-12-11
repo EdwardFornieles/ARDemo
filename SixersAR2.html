@@ -37,7 +37,7 @@
 <img src="images/init.png" id="init" style="position: absolute; width: 25%; height: 18.44%; left: 68.61%; bottom: 77.06%" />
 
 <!-- <div id="loadingbar1" data-preset="stripe" class="ldBar label-center" aria-valuenow="0" style=""></div> -->
-<div class="progress-bar" id="loadingbar1" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style=" position: absolute;"> </div>
+<div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" id="loadingbar1" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style=" position: absolute;"> </div>
 
 <script type="text/javascript">
 
@@ -422,7 +422,7 @@ function getSize() {
 
   var a = myWidth * 25.97 / 100;
   var b = myHeight * 1.81 / 100;
-  document.getElementById("loadingbar1").setAttribute("style","position: absolute; width: " + a + "px; left: 68.42%; top: 12.27%" + "height: " + b + "px");
+  document.getElementById("loadingbar1").setAttribute("style","position: absolute; width: " + a + "px; left: 68.42%; top: 10.27%; " + "height: " + b + "px");
 }
 
 </script>
