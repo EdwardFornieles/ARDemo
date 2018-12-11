@@ -73,6 +73,7 @@ function myFunction(){
 	document.getElementById("start").style.visibility = "hidden";
 	document.getElementById("scan").style.visibility = "visible";
 	document.getElementById("loadingbar").style.visibility = "hidden";
+	setAspectRatio(document.getElementById("scan"), document.getElementById("scan").style.height);
 
 	startValue = 1;
 }
@@ -87,8 +88,6 @@ function initialize()
 	document.getElementById("scan").style.visibility = "hidden";
 	document.getElementById("init").style.visibility = "hidden";
 	document.getElementById("loadingbar").setAttribute("data-value","0");
-
-	setAspectRatio(document.getElementById("scan"), document.getElementById("scan").style.height);
 
 // document.querySelector("start").addEventListener("click", (e)=> {
 //   myFunction();
