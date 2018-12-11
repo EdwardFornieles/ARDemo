@@ -201,10 +201,9 @@ function initialize()
 		console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); 
 		var prog = xhr.loaded / xhr.total * 100;
 
-		var cur = totalCount * 25 + prog / 4;
+		var a = totalCount * 25 + prog / 4;
 
-		console.log("aaa :" + cur);
-		document.getElementById("loadingbar").setAttribute("data-value",cur);
+		document.getElementById("loadingbar").setAttribute("data-value",a);
 
 		if(prog == 100)
 		{
