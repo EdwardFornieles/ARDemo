@@ -727,7 +727,7 @@ out$.presets = presets = {
   stripe: {
     "type": 'fill',
     "path": 'M15 5L85 5A5 5 0 0 1 85 15L15 15A5 5 0 0 1 15 5',
-    "stroke": '#00000000',
+    "stroke": '#f00',
     "fill": 'data:ldbar/res,stripe(#d8478f,#47092b00, 3)',
     "fill-dir": "ltr",
     "fill-background": '#47082a00',
