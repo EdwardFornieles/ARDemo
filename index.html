@@ -61,7 +61,7 @@ var totalCount;
 
 var startValue;
 
-
+var totalSizeAry = [6753600, 9559040, 6067712, 3091984];
 
 getSize();
 initialize();
@@ -193,19 +193,64 @@ function initialize()
 		});
 	}
 
-	function onProgress(xhr) { 
+	function onProgress1(xhr) { 
 
-		console.log(xhr);
-
-		var prog = xhr.loaded / xhr.total * 100;
-
+		var prog = xhr.loaded / totalSizeAry[0] * 100;
 		var a = Math.round(totalCount * 25 + prog / 4);
-		var _percent = a / 100 * 25.5;
-		$('#loadingbar').css('width', _percent+'%').attr('aria-valuenow', a);  
 
-		if(prog == 100)
+		if(xhr.loaded == totalSizeAry[0]) {
+			totalCount = totalCount + 1;	
+		}
+
+		if(totalCount == 4)
 		{
-			totalCount = totalCount + 1;
+			document.getElementById("start").style.visibility = "visible";
+			document.getElementById("load01").style.visibility = "hidden";
+			document.getElementById("load02").style.visibility = "hidden";
+			$("#loadingbar").css("display", "none");
+		}
+	}
+	function onProgress2(xhr) { 
+
+		var prog = xhr.loaded / totalSizeAry[1] * 100;
+		var a = Math.round(totalCount * 25 + prog / 4);
+
+		if(xhr.loaded == totalSizeAry[1]) {
+			totalCount = totalCount + 1;	
+		}
+
+		if(totalCount == 4)
+		{
+			document.getElementById("start").style.visibility = "visible";
+			document.getElementById("load01").style.visibility = "hidden";
+			document.getElementById("load02").style.visibility = "hidden";
+			$("#loadingbar").css("display", "none");
+		}
+	}
+	function onProgress3(xhr) { 
+
+		var prog = xhr.loaded / totalSizeAry[2] * 100;
+		var a = Math.round(totalCount * 25 + prog / 4);
+
+		if(xhr.loaded == totalSizeAry[2]) {
+			totalCount = totalCount + 1;	
+		}
+
+		if(totalCount == 4)
+		{
+			document.getElementById("start").style.visibility = "visible";
+			document.getElementById("load01").style.visibility = "hidden";
+			document.getElementById("load02").style.visibility = "hidden";
+			$("#loadingbar").css("display", "none");
+		}
+	}
+	function onProgress4(xhr) { 
+
+		var prog = xhr.loaded / totalSizeAry[3] * 100;
+		var a = Math.round(totalCount * 25 + prog / 4);
+
+		if(xhr.loaded == totalSizeAry[3]) {
+			totalCount = totalCount + 1;	
 		}
 
 		if(totalCount == 4)
@@ -220,32 +265,7 @@ function initialize()
 	function onError(xhr) { console.log( 'An error happened' ); }
 
 	// model
-	var loader4 = new THREE.FBXLoader();
-	loader4.load( 'models/Syd.fbx', function ( object ) {
 
-		object.scale.setScalar(0.004);
-        object.position.set(0, 0, 0); 
-
-		markerArray[3].add( object );
-
-		objectArray[3] = object;
-
-	} , onProgress, onError);
-
-	// model
-	var loader3 = new THREE.FBXLoader();
-	loader3.load( 'models/Maddinson.fbx', function ( object ) {
-
-		object.scale.setScalar(0.007);
-        object.position.set(0, 0, 0); 
-
-		markerArray[2].add( object );
-
-		objectArray[2] = object;
-
-	} , onProgress, onError);
-
-	// model
 	var loader1 = new THREE.FBXLoader();
 	loader1.load( 'models/Healy.fbx', function ( object ) {
 
@@ -264,7 +284,7 @@ function initialize()
 
 		CurObjIndex = 0;
 
-	} , onProgress, onError);
+	} , onProgress1, onError);
 
 	// model
 	var loader2 = new THREE.FBXLoader();
@@ -277,7 +297,33 @@ function initialize()
 
 		objectArray[1] = object;
 
-	} , onProgress, onError);
+	} , onProgress2, onError);
+
+	// model
+	var loader3 = new THREE.FBXLoader();
+	loader3.load( 'models/Maddinson.fbx', function ( object ) {
+
+		object.scale.setScalar(0.007);
+        object.position.set(0, 0, 0); 
+
+		markerArray[2].add( object );
+
+		objectArray[2] = object;
+
+	} , onProgress3, onError);
+
+	// model
+	var loader4 = new THREE.FBXLoader();
+	loader4.load( 'models/Syd.fbx', function ( object ) {
+
+		object.scale.setScalar(0.004);
+        object.position.set(0, 0, 0); 
+
+		markerArray[3].add( object );
+
+		objectArray[3] = object;
+
+	} , onProgress4, onError);
 
 	currentMarkerName = markerNames[0];
 }
