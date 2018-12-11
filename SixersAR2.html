@@ -202,12 +202,16 @@ function initialize()
 		var prog = xhr.loaded / xhr.total * 100;
 
 		var a = Math.round(totalCount * 25 + prog / 4);
+		document.getElementById("loadingbar").setAttribute("data-value", Math.round(totalCount * 25 + prog / 4));
 
 		if(prog == 100)
 		{
 			totalCount = totalCount + 1;
 		}
 
+		if(totalCount == 1)
+		{
+		}
 		if(totalCount == 4)
 		{
 			document.getElementById("start").style.visibility = "visible";
@@ -332,9 +336,6 @@ function update()
 				markerArray[CurObjIndex].rotation.set(0, 0, 0);
 			}
 		}
-	}else{
-				document.getElementById("loadingbar").setAttribute("data-value",totalCount);
-
 	}
 
 	// update artoolkit on every frame
