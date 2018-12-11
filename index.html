@@ -61,6 +61,8 @@ var totalCount;
 
 var startValue;
 
+
+
 getSize();
 initialize();
 animate();
@@ -193,7 +195,7 @@ function initialize()
 
 	function onProgress(xhr) { 
 
-		console.log(xhr.type);
+		console.log(xhr.total);
 
 		var prog = xhr.loaded / xhr.total * 100;
 
