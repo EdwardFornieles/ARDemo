@@ -67,12 +67,9 @@ animate();
 
 function myFunction(){
 	document.getElementById("main").style.visibility = "hidden";
-	document.getElementById("load01").style.visibility = "hidden";
-	document.getElementById("load02").style.visibility = "hidden";
 	document.getElementById("start").style.visibility = "hidden";
 	document.getElementById("scan").style.visibility = "visible";
 
-	$("#loadingbar").css("display", "none");
 //	setAspectRatio(document.getElementById("scan"), document.getElementById("scan").style.height);
 
 	startValue = 1;
@@ -209,6 +206,9 @@ function initialize()
 		if(totalCount == 4)
 		{
 			document.getElementById("start").style.visibility = "visible";
+			document.getElementById("load01").style.visibility = "hidden";
+			document.getElementById("load02").style.visibility = "hidden";
+			$("#loadingbar").css("display", "none");
 		}
 	}
 
