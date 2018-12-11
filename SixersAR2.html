@@ -202,7 +202,6 @@ function initialize()
 		var prog = xhr.loaded / xhr.total * 100;
 
 		var a = Math.round(totalCount * 25 + prog / 4);
-		document.getElementById("loadingbar").setAttribute("data-value", 20);
 
 		if(prog == 100)
 		{
@@ -337,6 +336,8 @@ function update()
 			}
 		}
 	}else{
+				document.getElementById("loadingbar").setAttribute("data-value", 20);
+
 		// if(totalCount == 1)
 		// {
 		// 	document.getElementById("loadingbar").setAttribute("data-value", 25);
