@@ -64,6 +64,18 @@ getSize();
 initialize();
 animate();
 
+function myFunction(){
+	alert();
+	document.getElementById("main").style.visibility = "hidden";
+	document.getElementById("load01").style.visibility = "hidden";
+	document.getElementById("load02").style.visibility = "hidden";
+	document.getElementById("start").style.visibility = "hidden";
+	document.getElementById("scan").style.visibility = "visible";
+	document.getElementById("loadingbar").style.visibility = "hidden";
+
+	startValue = 1;
+}
+
 function initialize()
 {
 	container = document.createElement( 'div' );
@@ -369,18 +381,6 @@ function fadeIn(el) {
         }
     };
     tick();
-}
-
-function myFunction() {
-	alert();
-	document.getElementById("main").style.visibility = "hidden";
-	document.getElementById("load01").style.visibility = "hidden";
-	document.getElementById("load02").style.visibility = "hidden";
-	document.getElementById("start").style.visibility = "hidden";
-	document.getElementById("scan").style.visibility = "visible";
-	document.getElementById("loadingbar").style.visibility = "hidden";
-
-	startValue = 1;
 }
 
 function getSize() {
