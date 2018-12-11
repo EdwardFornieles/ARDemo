@@ -245,6 +245,7 @@ function initialize()
 
 		CurObjIndex = 0;
 
+		document.getElementById("loadingbar").setAttribute("data-value", 25);
 	} , onProgress, onError);
 
 	// model
@@ -258,6 +259,7 @@ function initialize()
 
 		objectArray[1] = object;
 
+		document.getElementById("loadingbar").setAttribute("data-value", 50);
 	} , onProgress, onError);
 
 	// model
@@ -270,6 +272,8 @@ function initialize()
 		markerArray[2].add( object );
 
 		objectArray[2] = object;
+
+		document.getElementById("loadingbar").setAttribute("data-value", 75);
 
 	} , onProgress, onError);
 
@@ -339,7 +343,6 @@ function update()
 			}
 		}
 	}else{
-				document.getElementById("loadingbar").setAttribute("data-value", 20);
 
 		// if(totalCount == 1)
 		// {
