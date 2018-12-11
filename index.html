@@ -192,6 +192,9 @@ function initialize()
 	}
 
 	function onProgress(xhr) { 
+
+		console.log( xhr);
+
 		var prog = xhr.loaded / xhr.total * 100;
 
 		var a = Math.round(totalCount * 25 + prog / 4);
